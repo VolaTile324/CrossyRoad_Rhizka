@@ -8,12 +8,46 @@ public class GameOverText : MonoBehaviour
     [SerializeField] TMP_Text gameOverText;
     [SerializeField] TMP_Text bestScoreInfoText;
     [SerializeField] TMP_Text reasonText;
+    private int previousRecord;
 
     public void Start()
     {
-        if (PlayerPrefs.HasKey("BestScore"))
+        if (PlayerPrefs.HasKey("TimeValue"))
         {
-            bestScoreInfoText.text = "Best: " + PlayerPrefs.GetInt("BestScore").ToString();
+            if (PlayerPrefs.GetInt("TimeValue") == 1)
+            {
+                if (PlayerPrefs.HasKey("BestScoreNight"))
+                {
+                    bestScoreInfoText.text = "Best: " + PlayerPrefs.GetInt("BestScoreNight").ToString();
+                    previousRecord = PlayerPrefs.GetInt("BestScoreNight");
+                }
+                else
+                {
+                    bestScoreInfoText.text = "No Highscore Yet!";
+                }
+
+                if (PlayerPrefs.GetInt("BestScoreNight") == 0)
+                {
+                    bestScoreInfoText.text = "No Highscore Yet!";
+                }
+            }
+            else
+            {
+                if (PlayerPrefs.HasKey("BestScoreDay"))
+                {
+                    bestScoreInfoText.text = "Best: " + PlayerPrefs.GetInt("BestScoreDay").ToString();
+                    previousRecord = PlayerPrefs.GetInt("BestScoreDay");
+                }
+                else
+                {
+                    bestScoreInfoText.text = "No Highscore Yet!";
+                }
+
+                if (PlayerPrefs.GetInt("BestScoreDay") == 0)
+                {
+                    bestScoreInfoText.text = "No Highscore Yet!";
+                }
+            }
         }
         else
         {
@@ -28,17 +62,42 @@ public class GameOverText : MonoBehaviour
 
     public void UpdateBestScoreInfoText(int newScore)
     {
-        if (PlayerPrefs.HasKey("BestScore"))
+        if (PlayerPrefs.HasKey("TimeValue"))
         {
-            bestScoreInfoText.text = "Best: " + PlayerPrefs.GetInt("BestScore").ToString();
-        }
-        else if (!PlayerPrefs.HasKey("BestScore"))
-        {
-            bestScoreInfoText.text = "No Highscore Yet!";
+            if (PlayerPrefs.GetInt("TimeValue") == 1)
+            {
+                if (newScore > previousRecord)
+                {
+                    bestScoreInfoText.text = "New Record!";
+                }
+                else if (PlayerPrefs.GetInt("BestScoreNight") == 0)
+                {
+                    bestScoreInfoText.text = "No Highscore Yet!";
+                }
+                else
+                {
+                    bestScoreInfoText.text = "Best: " + PlayerPrefs.GetInt("BestScoreNight").ToString();
+                }
+            }
+            else
+            {
+                if (newScore > previousRecord)
+                {
+                    bestScoreInfoText.text = "New Record!";
+                }
+                else if (PlayerPrefs.GetInt("BestScoreDay") == 0)
+                {
+                    bestScoreInfoText.text = "No Highscore Yet!";
+                }
+                else
+                {
+                    bestScoreInfoText.text = "Best: " + PlayerPrefs.GetInt("BestScoreDay").ToString();
+                }
+            }
         }
         else
         {
-            bestScoreInfoText.text = "No Highscore Yet!"; // this is most likely unused, but just in case
+            bestScoreInfoText.text = "No Highscore Yet!";
         }
     }
 

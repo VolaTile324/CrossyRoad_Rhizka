@@ -10,9 +10,40 @@ public class ScoreText : MonoBehaviour
 
     public void Start()
     {
-        if (PlayerPrefs.HasKey("BestScore"))
+        if (PlayerPrefs.HasKey("TimeValue"))
         {
-            bestScoreText.text = "Best: " + PlayerPrefs.GetInt("BestScore").ToString();
+            if (PlayerPrefs.GetInt("TimeValue") == 1)
+            {
+                if (PlayerPrefs.HasKey("BestScoreNight"))
+                {
+                    bestScoreText.text = "Best: " + PlayerPrefs.GetInt("BestScoreNight").ToString();
+                }
+                else
+                {
+                    bestScoreText.text = "Best: N/A";
+                }
+
+                if (PlayerPrefs.GetInt("BestScoreNight") == 0)
+                {
+                    bestScoreText.text = "Best: N/A";
+                }
+            }
+            else
+            {
+                if (PlayerPrefs.HasKey("BestScoreDay"))
+                {
+                    bestScoreText.text = "Best: " + PlayerPrefs.GetInt("BestScoreDay").ToString();
+                }
+                else
+                {
+                    bestScoreText.text = "Best: N/A";
+                }
+
+                if (PlayerPrefs.GetInt("BestScoreDay") == 0)
+                {
+                    bestScoreText.text = "Best: N/A";
+                }
+            }
         }
         else
         {
@@ -27,9 +58,29 @@ public class ScoreText : MonoBehaviour
 
     public void SaveScore()
     {
-        if (PlayerPrefs.GetInt("BestScore") < int.Parse(scoreText.text))
+        if (PlayerPrefs.HasKey("TimeValue"))
+            {
+            if (PlayerPrefs.GetInt("TimeValue") == 1)
+            {
+                if (PlayerPrefs.GetInt("BestScoreNight") < int.Parse(scoreText.text))
+                {
+                        PlayerPrefs.SetInt("BestScoreNight", int.Parse(scoreText.text));
+                }
+            }
+            else
+            {
+                if (PlayerPrefs.GetInt("BestScoreDay") < int.Parse(scoreText.text))
+                {
+                    PlayerPrefs.SetInt("BestScoreDay", int.Parse(scoreText.text));
+                }
+            }
+        }
+        else
         {
-            PlayerPrefs.SetInt("BestScore", int.Parse(scoreText.text));
+            if (PlayerPrefs.GetInt("BestScoreDay") < int.Parse(scoreText.text))
+            {
+                PlayerPrefs.SetInt("BestScoreDay", int.Parse(scoreText.text));
+            }
         }
     }
 }

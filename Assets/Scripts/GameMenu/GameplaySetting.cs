@@ -11,6 +11,7 @@ public class GameplaySetting : MonoBehaviour
     [SerializeField] TMP_Text nightLabel;
     [SerializeField] Image dayExample;
     [SerializeField] Image nightExample;
+    [SerializeField] TMP_Text bestScoreLabel;
 
     // called when the panel opened up for the first time
     public void InitialSetting()
@@ -24,6 +25,19 @@ public class GameplaySetting : MonoBehaviour
                 nightLabel.color = Color.green;
                 nightExample.gameObject.SetActive(true);
                 dayExample.gameObject.SetActive(false);
+                if (PlayerPrefs.HasKey("BestScoreNight"))
+                {
+                    bestScoreLabel.text = "Best: " + PlayerPrefs.GetInt("BestScoreNight").ToString();
+                }
+                else
+                {
+                    bestScoreLabel.text = "Best: N/A";
+                }
+
+                if (PlayerPrefs.GetInt("BestScoreNight") == 0)
+                {
+                    bestScoreLabel.text = "Best: N/A";
+                }
             }
             else
             {
@@ -32,6 +46,19 @@ public class GameplaySetting : MonoBehaviour
                 nightLabel.color = Color.gray;
                 nightExample.gameObject.SetActive(false);
                 dayExample.gameObject.SetActive(true);
+                if (PlayerPrefs.HasKey("BestScoreDay"))
+                {
+                    bestScoreLabel.text = "Best: " + PlayerPrefs.GetInt("BestScoreDay").ToString();
+                }
+                else
+                {
+                    bestScoreLabel.text = "Best: N/A";
+                }
+
+                if (PlayerPrefs.GetInt("BestScoreDay") == 0)
+                {
+                    bestScoreLabel.text = "Best: N/A";
+                }
             }
         }
         else
@@ -41,6 +68,7 @@ public class GameplaySetting : MonoBehaviour
             nightLabel.color = Color.gray;
             nightExample.gameObject.SetActive(false);
             dayExample.gameObject.SetActive(true);
+            bestScoreLabel.text = "Best: N/A";
         }
     }
     
@@ -54,6 +82,19 @@ public class GameplaySetting : MonoBehaviour
             nightLabel.color = Color.green;
             nightExample.gameObject.SetActive(true);
             dayExample.gameObject.SetActive(false);
+            if (PlayerPrefs.HasKey("BestScoreNight"))
+            {
+                bestScoreLabel.text = "Best: " + PlayerPrefs.GetInt("BestScoreNight").ToString();
+            }
+            else
+            {
+                bestScoreLabel.text = "Best: N/A";
+            }
+
+            if (PlayerPrefs.GetInt("BestScoreNight") == 0)
+            {
+                bestScoreLabel.text = "Best: N/A";
+            }
         }
         else
         {
@@ -62,6 +103,19 @@ public class GameplaySetting : MonoBehaviour
             nightLabel.color = Color.gray;
             nightExample.gameObject.SetActive(false);
             dayExample.gameObject.SetActive(true);
+            if (PlayerPrefs.HasKey("BestScoreDay"))
+            {
+                bestScoreLabel.text = "Best: " + PlayerPrefs.GetInt("BestScoreDay").ToString();
+            }
+            else
+            {
+                bestScoreLabel.text = "Best: N/A";
+            }
+
+            if (PlayerPrefs.GetInt("BestScoreDay") == 0)
+            {
+                bestScoreLabel.text = "Best: N/A";
+            }
         }
     }
 }
