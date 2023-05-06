@@ -49,7 +49,7 @@ MonoBehaviour:
   tunnelPrefab: {fileID: 7695634238498779814, guid: 460c4a5abc7fda643bef73c611c714f7, type: 3}
   carPrefab:
   - {fileID: -4955008662042688664, guid: 76ddb45d62fa200449522f57b5e9d18b, type: 3}
-  - {fileID: -4955008662042688664, guid: 76ddb45d62fa200449522f57b5e9d18b, type: 3}
-  - {fileID: -4955008662042688664, guid: 76ddb45d62fa200449522f57b5e9d18b, type: 3}
+  - {fileID: -4955008662042688664, guid: 836aa8398f2980b4185f4a5c2a77f971, type: 3}
+  - {fileID: -4955008662042688664, guid: 6d44290477444c345aef86fe4e17859c, type: 3}
   minCarSpawnInterval: 1
   maxCarSpawnInterval: 5
