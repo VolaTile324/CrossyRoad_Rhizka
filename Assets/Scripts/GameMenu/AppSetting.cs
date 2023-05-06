@@ -78,8 +78,8 @@ public class AppSetting : MonoBehaviour
 
     IEnumerator ResConfirmation()
     {
-        yield return new WaitForSecondsRealtime(10);
-        if (currentResolutionIndex != resolutionDropdown.value)
+        yield return new WaitForSeconds(10f);
+        if (confirmDialog.gameObject.activeSelf)
         {
             RevertResolution();
         }
