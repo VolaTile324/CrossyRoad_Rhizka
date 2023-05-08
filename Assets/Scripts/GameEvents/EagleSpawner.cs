@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class EagleSpawner : MonoBehaviour
 {
@@ -9,6 +10,7 @@ public class EagleSpawner : MonoBehaviour
     [SerializeField] private CharMovement playerTarget;
     [SerializeField] private AudioManager audioManager;
     [SerializeField] private AudioClip eagleSound;
+    [SerializeField] private Slider gameTimerDisplay;
 
     // handle timer that spawns eagles
     [SerializeField] private float intialGameTimer;
@@ -37,8 +39,13 @@ public class EagleSpawner : MonoBehaviour
             // stop the eagle sound
             eagleSound = null;
         }
-        
-        gameTimer -= Time.deltaTime;
+        else
+        {
+            gameTimer -= Time.deltaTime;
+        }
+
+        // slider will track game timer
+        gameTimerDisplay.value = gameTimer;
     }
 
     // function to reset timer everytime the terrain updates
